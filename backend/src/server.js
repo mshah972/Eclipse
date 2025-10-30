@@ -6,6 +6,8 @@ import cors from "cors";
 import morgan from "morgan";
 import rateLimit from "express-rate-limit";
 import {errorHandler} from "./middleware/error.js";
+import authRoutes from "./routes/auth.routes.js";
+import userRoutes from "./routes/user.routes.js";
 
 await connectDB();
 const app = express();
@@ -17,7 +19,8 @@ app.use(morgan("dev"));
 app.set("trust proxy", 1);
 app.use(rateLimit({windowMs: 15 * 60 * 1000, max: 200}));
 
-// app.use("/api/auth", authRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/user", userRoutes);
 
 app.get('/health', (_req, res) => res.json({ok: true}));
 
