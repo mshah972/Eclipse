@@ -5,7 +5,7 @@ export const signJWT = (payload, opts = {}) => {
         throw new Error("JWT_SECRET is missing. Check your .env or dotenv config.");
     }
     return jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRES_IN || "24h",
+        expiresIn: process.env.JWT_EXPIRES_IN || "12h",
         ...opts,
     });
 };

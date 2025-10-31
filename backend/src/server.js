@@ -8,6 +8,8 @@ import rateLimit from "express-rate-limit";
 import {errorHandler} from "./middleware/error.js";
 import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import productRoutes from "./routes/product.routes.js";
+import auditRoutes from "./routes/audit.routes.js";
 
 await connectDB();
 const app = express();
@@ -21,6 +23,8 @@ app.use(rateLimit({windowMs: 15 * 60 * 1000, max: 200}));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/audit", auditRoutes);
 
 app.get('/health', (_req, res) => res.json({ok: true}));
 
