@@ -4,6 +4,8 @@ import AuditLog from "../models/AuditLog.js";
 
 const router = express.Router();
 
+/* --------------------------- GET /api/audit (Audit Logs (admin-only))  --------------------------- */
+
 router.get("/", authenticate, requireRole(["admin"]), async (req, res, next) => {
    try {
        const { targetId, action ,page = 1, limit = 20} = req.query;

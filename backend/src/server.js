@@ -10,6 +10,7 @@ import authRoutes from "./routes/auth.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import productRoutes from "./routes/product.routes.js";
 import auditRoutes from "./routes/audit.routes.js";
+import cartRoutes from "./routes/cart.routes.js";
 
 await connectDB();
 const app = express();
@@ -25,6 +26,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/audit", auditRoutes);
+app.use("/api/cart", cartRoutes);
 
 app.get('/health', (_req, res) => res.json({ok: true}));
 

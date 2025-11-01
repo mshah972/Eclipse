@@ -8,6 +8,8 @@ import rateLimit, { ipKeyGenerator } from "express-rate-limit";
 
 const router = express.Router();
 
+/* --------------------------- GET /api/profile --------------------------- */
+
 const updateProfileLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 5,
@@ -29,6 +31,8 @@ router.get("/profile", authenticate, async (req, res, next) => {
         next(err);
     }
 });
+
+/* --------------------------- PUT /api/profile (update Profile) --------------------------- */
 
 const updateProfileRules = [
     body("name")
@@ -54,7 +58,7 @@ const updateProfileRules = [
         })
 ];
 
-// src/routes/user.routes.js
+
 router.put("/profile", authenticate, updateProfileRules, updateProfileLimiter, async (req, res, next) => {
     try {
         if (!req.is("application/json") && !req.is("json") && typeof req.body !== "object") {

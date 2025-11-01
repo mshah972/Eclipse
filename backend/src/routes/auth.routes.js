@@ -22,6 +22,8 @@ const loginRules = [
     body("password").isString().isLength({ min: 8 })
 ];
 
+/* --------------------------- POST /api/register (New User) --------------------------- */
+
 router.post("/register", registerRules, async (req, res, next) => {
     try {
         const errors = validationResult(req);
@@ -54,6 +56,8 @@ router.post("/register", registerRules, async (req, res, next) => {
     } catch (err) { next(err); }
 });
 
+/* --------------------------- POST /api/login --------------------------- */
+
 router.post("/login", loginRules, async (req, res, next) => {
     try {
         const errors = validationResult(req);
@@ -77,6 +81,8 @@ router.post("/login", loginRules, async (req, res, next) => {
         });
     } catch (err) { next(err); }
 });
+
+/* --------------------------- GET /api/verify --------------------------- */
 
 router.get("/verify", (req, res) => {
     res.json({ ok: true, message: "Public verify endpoint (JWT check is middleware-based on protected routes)" });
