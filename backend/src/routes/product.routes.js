@@ -3,7 +3,7 @@ import slugify from "slugify";
 import Product from "../models/Product.js";
 import {authenticate, requireRole} from "../middleware/auth.js";
 import AuditLog from "../models/AuditLog.js";
-import {body, query, param, validationResult} from "express-validator";
+import { body, query, param, validationResult } from "express-validator";
 
 const router = express.Router();
 
