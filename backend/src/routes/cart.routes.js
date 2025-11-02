@@ -72,7 +72,7 @@ router.post("/", authenticate, upsertRules, async (req, res, next) => {
            { new: true, upsert: true }
        );
 
-       if (qty == 0) {
+       if (qty === 0) {
            await Cart.updateOne(
                { _id: cart._id },
                { $pull: { items: { productId } } }
