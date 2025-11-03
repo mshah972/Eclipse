@@ -1,0 +1,50 @@
+// import "dotenv/config";
+// import express from "express";
+// import { connectDB } from "./config/db.js";
+// import helmet from "helmet";
+// import cors from "cors";
+// import morgan from "morgan";
+// import rateLimit from "express-rate-limit";
+// import {errorHandler} from "./middleware/error.js";
+// import authRoutes from "./routes/auth.routes.js";
+// import userRoutes from "./routes/user.routes.js";
+// import productRoutes from "./routes/product.routes.js";
+// import auditRoutes from "./routes/audit.routes.js";
+// import cartRoutes from "./routes/cart.routes.js";
+//
+// await connectDB();
+// const app = express();
+//
+// app.use(helmet());
+// app.use(cors({ origin: process.env.CLIENT_ORIGIN, credentials: true}));
+// app.use(express.json({ limit: "10kb" }));
+// app.use(morgan("dev"));
+// app.set("trust proxy", 1);
+// app.use(rateLimit({windowMs: 15 * 60 * 1000, max: 200}));
+//
+// app.use("/api/auth", authRoutes);
+// app.use("/api/user", userRoutes);
+// app.use("/api/products", productRoutes);
+// app.use("/api/audit", auditRoutes);
+// app.use("/api/cart", cartRoutes);
+//
+// app.get('/health', (_req, res) => res.json({ok: true}));
+//
+// app.get(errorHandler);
+//
+// const port = process.env.PORT || 3000;
+// app.listen(port, () => console.log(`🚀 API listening on http://localhost:${port}`))
+//
+import "dotenv/config";
+import { connectDB } from "./config/db.js";
+import { buildApp } from "./app.js";
+
+const port = process.env.PORT || 4000;
+
+(async () => {
+    await connectDB();
+    const app = buildApp();
+    app.listen(port, () =>
+        console.log(`🚀 API listening on http://localhost:${port}`)
+    );
+})();
